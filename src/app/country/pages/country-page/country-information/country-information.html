@@ -1,0 +1,81 @@
+<section class="px-6 py-8 max-w-2xl mx-auto space-y-6">
+  <!-- Region breadcrumb -->
+  <div class="flex items-center gap-2">
+    <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+    <span
+      class="text-xs text-base-content/50 uppercase tracking-widest font-medium"
+    >
+      {{ country().subregion }} · {{ country().region }}
+    </span>
+  </div>
+
+  <!-- Nombre del país -->
+  <h1 class="text-4xl font-bold tracking-tight leading-none">
+    {{ country().name }}
+  </h1>
+
+  <!-- Stats cards -->
+  <div class="grid grid-cols-2 gap-3">
+    <div class="bg-base-200 rounded-xl p-4">
+      <p class="text-xs text-base-content/50 uppercase tracking-widest mb-1">
+        Capital
+      </p>
+      <p class="text-xl font-semibold">{{ country().capital }}</p>
+    </div>
+    <div class="bg-base-200 rounded-xl p-4">
+      <p class="text-xs text-base-content/50 uppercase tracking-widest mb-1">
+        Population
+      </p>
+      <p class="text-xl font-semibold">{{ country().population | number }}</p>
+      <p class="stat-desc">Desde {{countryYear()}}</p>
+    </div>
+  </div>
+
+  <!-- Diff bandera/nombre -->
+  <div
+    class="rounded-2xl border border-base-content/10 overflow-hidden bg-base-100"
+  >
+    <figure class="diff aspect-video" tabindex="0">
+      <div class="diff-item-1" role="img" tabindex="0">
+        <div class="grid place-content-center h-full bg-base-100">
+          <img
+            [src]="country().flagSvg"
+            [alt]="'Flag of ' + country().name"
+            class="w-44 rounded shadow-md"
+          />
+        </div>
+      </div>
+      <div class="diff-item-2" role="img">
+        <div class="bg-base-200 grid place-content-center h-full">
+          <span
+            class="text-6xl font-bold tracking-tighter text-base-content/20 select-none"
+          >
+            {{ country().name }}
+          </span>
+        </div>
+      </div>
+      <div class="diff-resizer"></div>
+    </figure>
+
+    <!-- Footer del diff -->
+    <div
+      class="px-4 py-2.5 border-t border-base-content/10 flex items-center gap-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-3.5 h-3.5 text-base-content/40"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"
+        />
+      </svg>
+      <span class="text-xs text-base-content/40"
+        >Arrastra para comparar bandera y nombre</span
+      >
+    </div>
+  </div>
+</section>

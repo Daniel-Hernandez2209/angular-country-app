@@ -1,2 +1,12 @@
-<!-- country-list -->
-<country-list />
+@for (region of regions; track region) {
+  <button
+    class="btn m-3 btn-outline"
+    [class.btn-primary]="selectedRegion() !== region"
+    [class.btn-success]="selectedRegion() === region"
+    (click)="selectedRegion.set(region)"
+  >
+    {{ region }}
+  </button>
+}
+
+<country-list [countries]="regionResource.value() ?? []" />

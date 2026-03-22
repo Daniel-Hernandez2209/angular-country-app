@@ -1,5 +1,18 @@
 <!-- country-search-input -->
-<country-search-input placeholder="Buscar por capital" />
+<country-search-input
+  placeholder="Buscar por capital"
+  (value)="query.set($event)"
+  [debunceTime]="500"
+  [inicialValue]="query()"
+/>
 
-<!-- country-list -->
-<country-list />
+<!-- <country-list></country-list> -->
+
+@if (countryResource.error()) {
+  <div class="alert alert-danger mt-3" role="alert">
+    {{ countryResource.error() }}
+  </div>
+}
+@if (countryResource.hasValue()) {
+  <country-list [countries]="countryResource.value()!" />
+}
